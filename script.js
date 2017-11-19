@@ -70,23 +70,22 @@ let handlers = {
 let view = {
   displayTodos: function() {
     let todosUl = document.querySelector('ul');
-    todosUl.innerHTML = ''
-    for (let i = 0; i < todoList.todos.length; i++) {
+    todosUl.innerHTML = '';
+    todoList.todos.forEach(function(todo, position) {
       let todoLi = document.createElement('li');
-      let todo = todoList.todos[i];
       let todoTextWithCompletion = '';
-
+  
       if (todo.completed === true) {
         todoTextWithCompletion = '(x) ' + todo.todoText;
       } else {
         todoTextWithCompletion = '( ) ' + todo.todoText;  
       }
-
+  
       todoLi.textContent = todoTextWithCompletion;
-      todoLi.id = i;
+      todoLi.id = position;
       todoLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todoLi);
-    }
+    }, this);
   },
   createDeleteButton: function() {
     let deleteButton = document.createElement('button');
