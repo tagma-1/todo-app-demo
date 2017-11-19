@@ -20,25 +20,19 @@ let todoList = {
     let totalTodos = this.todos.length;
     let completedTodos = 0;
     
-    // Add up the toal number of completed todos
-    for (let i = 0; i < totalTodos; i++) {
-      if (this.todos[i].completed === true) {
+    this.todos.forEach(function(todo) {
+      if (todo.completed === true) {
         completedTodos++;
       }
-    }
-    
-    // If all the todos are completed, toggle all of them to uncompleted
-    if (completedTodos === totalTodos) {
-      for (let i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = false;
+    });
+
+    this.todos.forEach(function(todo) {
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
+      } else {
+        todo.completed = true;
       }
-      
-    // Otherwise, toggle all of the todos to completed
-    } else {
-        for (let i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = true;
-      }
-    }
+    });
   }
 }
 
